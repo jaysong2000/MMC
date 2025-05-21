@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Choose Your Adventure</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .screen {
+      display: none;
+      text-align: center;
+    }
+
+    .active {
+      display: block;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="start-screen" class="screen active">
+    <h1>You find two doors. Which one do you choose?</h1>
+    <button onclick="goToWin()">Door A</button>
+    <button onclick="goToLose()">Door B</button>
+  </div>
+
+  <div id="win-screen" class="screen">
+    <h1>🎉 You Win! You chose the right door!</h1>
+    <button onclick="restart()">Play Again</button>
+  </div>
+
+  <div id="lose-screen" class="screen">
+    <h1>💀 You Lose! A monster was behind that door.</h1>
+    <button onclick="restart()">Try Again</button>
+  </div>
+
+  <script>
+    function goToWin() {
+      showScreen('win-screen');
+    }
+
+    function goToLose() {
+      showScreen('lose-screen');
+    }
+
+    function restart() {
+      showScreen('start-screen');
+    }
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
